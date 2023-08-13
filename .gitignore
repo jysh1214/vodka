@@ -1,0 +1,12 @@
+# build files
+build*
+
+# python
+*.pyc
+
+# vscode files
+.cache/
+.vscode/
+
+# macos files
+.DS_Store
