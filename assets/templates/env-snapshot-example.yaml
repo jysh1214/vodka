@@ -1,0 +1,52 @@
+server:
+  user: alex
+  hostname: dev-server
+  os: Ubuntu 24.04.4 LTS (Noble Numbat)
+  kernel: 6.6.87.2-microsoft-standard-WSL2
+  arch: x86_64
+
+pyvenv:
+  module: module load python/3.11.5
+  version: Python 3.11.5
+  venv: /home/alex/project/.venv
+  path: /home/alex/project/.venv/bin/python3
+  pip: pip 23.2.1
+  packages:
+    - numpy==1.26.0
+    - requests==2.31.0
+    - PyYAML==6.0.1
+
+container:
+  myimage:
+    dockerfile: ./Dockerfile
+    startup: docker run -v $(pwd):/work myimage
+    image: myimage:latest
+
+qemu:
+  stm32:
+    module: module load qemu/8.2.0
+    path: /usr/bin/qemu-system-arm
+    version: 8.2.0
+    checksum: md5sum:a3f8b2c...
+    startup: qemu-system-arm -M stm32 -kernel firmware.bin
+
+toolchain:
+  arm-gcc:
+    module: module load gcc/13.2.0
+    name: arm-none-eabi-gcc
+    path: /usr/local/bin/arm-none-eabi-gcc
+    version: 13.2.0
+    checksum: md5sum:9c1d4e...
+
+exec:
+  firmware:
+    name: firmware.elf
+    build: make -j4
+    run: ./build/firmware.elf
+    checksum: md5sum:7b2e1f...
+
+dep:
+  openssl:
+    version: 3.1.4
+    path: /usr/lib/x86_64-linux-gnu/libssl.so
+    checksum: md5sum:5a2b3c...
