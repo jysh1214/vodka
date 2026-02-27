@@ -51,10 +51,25 @@ Multiple entries at the same time is okay.
 Follow vodka skill, reproduce dev environment from {yaml}
 ```
 
-### 5. Show snapshot
+### 5. Extract large values to files
+
+```txt
+Follow vodka skill, extract large values to files
+```
+
+### 6. Show snapshot
 
 ```txt
 Follow vodka skill, show snapshot
+```
+
+## File References
+
+Large values can be stored in separate files using the `!file` tag:
+
+```yaml
+pyvenv:
+  packages: !file requirements.txt
 ```
 
 ## Output

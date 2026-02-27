@@ -17,6 +17,7 @@ Read these references first:
 - [references/snapshot-exec-template.md](references/snapshot-exec-template.md) — Executable Binaries template
 - [references/snapshot-dep-template.md](references/snapshot-dep-template.md) — Dependencies template
 - [references/reproduce.md](references/reproduce.md) — reproduce dev environment from YAML
+- [references/file-reference.md](references/file-reference.md) — `!file` tag for external file references
 
 ## Workflow
 
@@ -24,7 +25,8 @@ Read these references first:
 2. If users want to snapshot pyvenv, follow [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md).
 3. Users can add snapshots at any time to update `.vodka/env-snapshot.yaml`. Multiple entries at once is fine.
 4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display it as a table.
-5. If users want to reproduce the dev environment from a YAML file, follow [references/reproduce.md](references/reproduce.md).
+5. If users want to extract large values to files, read `.vodka/env-snapshot.yaml`, save large values to separate files under `.vodka/`, and replace them with `!file` references. See [references/file-reference.md](references/file-reference.md).
+6. If users want to reproduce the dev environment from a YAML file, follow [references/reproduce.md](references/reproduce.md).
 
 ## Rules
 
@@ -33,3 +35,4 @@ Read these references first:
 - If the user pastes raw commands without labels, ask them to clarify which category and field the command belongs to.
 - For template categories, group all fields under the same `category/name` together.
 - Save the output as a file (`.vodka/env-snapshot.yaml`). Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
+- For large field values, use `!file` to store content in a separate file under `.vodka/`. See [references/file-reference.md](references/file-reference.md).

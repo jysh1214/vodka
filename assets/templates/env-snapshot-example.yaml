@@ -11,10 +11,7 @@ pyvenv:
   venv: /home/alex/project/.venv
   path: /home/alex/project/.venv/bin/python3
   pip: pip 23.2.1
-  packages:
-    - numpy==1.26.0
-    - requests==2.31.0
-    - PyYAML==6.0.1
+  packages: !file requirements.txt
 
 container:
   myimage:
