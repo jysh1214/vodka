@@ -16,6 +16,7 @@ Read these references first:
 - [references/snapshot-toolchain-template.md](references/snapshot-toolchain-template.md) — Toolchain template
 - [references/snapshot-exec-template.md](references/snapshot-exec-template.md) — Executable Binaries template
 - [references/snapshot-dep-template.md](references/snapshot-dep-template.md) — Dependencies template
+- [references/reproduce.md](references/reproduce.md) — reproduce dev environment from YAML
 
 ## Workflow
 
@@ -23,6 +24,7 @@ Read these references first:
 2. If users want to snapshot pyvenv, follow [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md).
 3. Users can add snapshots at any time to update `.vodka/env-snapshot.yaml`. Multiple entries at once is fine.
 4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display it as a table.
+5. If users want to reproduce the dev environment from a YAML file, follow [references/reproduce.md](references/reproduce.md).
 
 ## Rules
 

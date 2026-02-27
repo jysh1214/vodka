@@ -45,7 +45,13 @@ Follow vodka skill, add snapshot:
 
 Multiple entries at the same time is okay.
 
-### 4. Show snapshot
+### 4. Reproduce dev environment
+
+```txt
+Follow vodka skill, reproduce dev environment from {yaml}
+```
+
+### 5. Show snapshot
 
 ```txt
 Follow vodka skill, show snapshot
