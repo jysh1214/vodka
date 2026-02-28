@@ -71,7 +71,3 @@ Large values can be stored in separate files using the `!file` tag:
 pyvenv:
   packages: !file requirements.txt
 ```
-
-## Output
-
-Each snapshot is saved to `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`.
