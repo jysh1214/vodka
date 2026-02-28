@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Print .vodka/env-snapshot.yaml as a table."""
+"""Print the latest .vodka/env-snapshot-*.yaml as a table."""
 
+import glob
 import os
 import sys
 import yaml
@@ -34,7 +35,16 @@ def resolve_value(val, base_dir=".vodka"):
     return val
 
 
-def load_snapshot(path=".vodka/env-snapshot.yaml"):
+def find_latest_snapshot():
+    """Find the most recent timestamped snapshot file."""
+    files = sorted(glob.glob(".vodka/env-snapshot-*.yaml"))
+    if not files:
+        print("No snapshot files found in .vodka/", file=sys.stderr)
+        sys.exit(1)
+    return files[-1]
+
+
+def load_snapshot(path=None):
     with open(path) as f:
         return yaml.load(f, Loader=make_loader())
 
@@ -82,7 +92,7 @@ def print_table(data):
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else ".vodka/env-snapshot.yaml"
+    path = sys.argv[1] if len(sys.argv) > 1 else find_latest_snapshot()
     data = load_snapshot(path)
     print_table(data)
 

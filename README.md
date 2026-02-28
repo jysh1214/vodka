@@ -20,7 +20,7 @@ mkdir -p .augment/skills && git clone https://github.com/jysh1214/vodka.git .aug
 
 ### 1. Initial snapshot
 
-Auto-collects server info and creates `.vodka/env-snapshot.yaml`:
+Auto-collects server info and creates `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`:
 
 ```txt
 Follow vodka skill, snapshot development environment
@@ -74,4 +74,4 @@ pyvenv:
 
 ## Output
 
-Snapshot is saved to `.vodka/env-snapshot.yaml`.
+Each snapshot is saved to `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`.

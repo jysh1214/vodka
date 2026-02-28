@@ -21,11 +21,11 @@ Read these references first:
 
 ## Workflow
 
-1. When the skill is triggered, immediately auto-collect server info and create `.vodka/env-snapshot.yaml`, follow [references/snapshot-server.md](references/snapshot-server.md).
+1. When the skill is triggered, immediately auto-collect server info and create `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`, follow [references/snapshot-server.md](references/snapshot-server.md).
 2. If users want to snapshot pyvenv, follow [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md).
-3. Users can add snapshots at any time to update `.vodka/env-snapshot.yaml`. Multiple entries at once is fine.
+3. Users can add snapshots at any time. Each snapshot creates a new timestamped file. Multiple entries at once is fine.
 4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display it as a table.
-5. If users want to extract large values to files, read `.vodka/env-snapshot.yaml`, save large values to separate files under `.vodka/`, and replace them with `!file` references. See [references/file-reference.md](references/file-reference.md).
+5. If users want to extract large values to files, read the latest `.vodka/env-snapshot-*.yaml`, save large values to separate files under `.vodka/`, and replace them with `!file` references. See [references/file-reference.md](references/file-reference.md).
 6. If users want to reproduce the dev environment from a YAML file, follow [references/reproduce.md](references/reproduce.md).
 
 ## Rules
@@ -34,5 +34,5 @@ Read these references first:
 - Accept labeled input in any order. Merge and deduplicate.
 - If the user pastes raw commands without labels, ask them to clarify which category and field the command belongs to.
 - For template categories, group all fields under the same `category/name` together.
-- Save the output as a file (`.vodka/env-snapshot.yaml`). Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
+- Save the output as a file (`.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`). Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
 - For large field values, use `!file` to store content in a separate file under `.vodka/`. See [references/file-reference.md](references/file-reference.md).

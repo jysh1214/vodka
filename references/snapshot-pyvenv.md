@@ -17,4 +17,4 @@ How to collect Python virtual environment information.
 
 1. User provides labeled input for each field (e.g., `[pyvenv:version] Python 3.11.5`)
 2. For `[pyvenv:packages]`, accept a multi-line list of packages in `pip freeze` format
-3. Store all fields under the `pyvenv:` key in `.vodka/env-snapshot.yaml`
+3. Store all fields under the `pyvenv:` key in `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`

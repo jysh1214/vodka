@@ -17,4 +17,4 @@ How to collect server information automatically.
 1. Run each command in the table above
 2. If a command fails or is unavailable, record the field value as `N/A`
 3. For `cat /etc/os-release`, extract the `PRETTY_NAME` value for a concise OS description
-4. Store all fields under the `server:` key in `.vodka/env-snapshot.yaml`
+4. Store all fields under the `server:` key in `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`
