@@ -1,4 +1,4 @@
-# vodka - Dev Environment Snapshot
+# vodka
 
 An AI skill that captures and organizes development environment into a structured YAML snapshot.
 
