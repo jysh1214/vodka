@@ -72,23 +72,28 @@ def print_table(data):
             first_line = cell.split("\n")[0] if "\n" in cell else cell
             widths[i] = max(widths[i], len(first_line))
 
+    def hline(left, mid, right, fill="─"):
+        return left + mid.join(fill * (w + 2) for w in widths) + right
+
     def fmt(row):
         parts = []
         for i, cell in enumerate(row):
             first_line = cell.split("\n")[0] if "\n" in cell else cell
-            parts.append(first_line.ljust(widths[i]))
-        return "| " + " | ".join(parts) + " |"
+            parts.append(" " + first_line.ljust(widths[i]) + " ")
+        return "│" + "│".join(parts) + "│"
 
-    sep = "|-" + "-|-".join("-" * w for w in widths) + "-|"
-
+    print(hline("┌", "┬", "┐"))
     print(fmt(headers))
-    print(sep)
-    for row in rows:
+    print(hline("├", "┼", "┤"))
+    for idx, row in enumerate(rows):
         print(fmt(row))
         if "\n" in row[3]:
             for line in row[3].split("\n")[1:]:
-                padding = "| " + " | ".join("".ljust(widths[i]) for i in range(3))
-                print(f"{padding} | {line.ljust(widths[3])} |")
+                empty = ("", "", "", line)
+                print(fmt(empty))
+        if idx < len(rows) - 1:
+            print(hline("├", "┼", "┤"))
+    print(hline("└", "┴", "┘"))
 
 
 def main():
