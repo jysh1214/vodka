@@ -63,7 +63,13 @@ Follow vodka skill, reproduce dev environment from {yaml}
 Follow vodka skill, extract large values to files
 ```
 
-### 6. Show snapshot
+### 6. Extract experiment steps
+
+```txt
+Follow vodka skill, extract the experiment steps from {yaml}
+```
+
+### 7. Show snapshot
 
 ```txt
 Follow vodka skill, show snapshot
