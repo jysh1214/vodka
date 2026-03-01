@@ -13,6 +13,12 @@ pyvenv:
   pip: pip 23.2.1
   packages: !file requirements.txt
 
+dep:
+  openssl:
+    version: 3.1.4
+    path: /usr/lib/x86_64-linux-gnu/libssl.so
+    checksum: md5sum:5a2b3c...
+
 container:
   myimage:
     dockerfile: ./Dockerfile
@@ -41,9 +47,3 @@ exec:
     build: make -j4
     run: ./build/firmware.elf
     checksum: md5sum:7b2e1f...
-
-dep:
-  openssl:
-    version: 3.1.4
-    path: /usr/lib/x86_64-linux-gnu/libssl.so
-    checksum: md5sum:5a2b3c...

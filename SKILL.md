@@ -11,11 +11,11 @@ Read these references first:
 - [references/snapshot.md](references/snapshot.md) — categories and fields overview
 - [references/snapshot-server.md](references/snapshot-server.md) — server auto-collect steps
 - [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md) — Python virtual environment fields
+- [references/snapshot-dep-template.md](references/snapshot-dep-template.md) — Dependencies template
 - [references/snapshot-container-template.md](references/snapshot-container-template.md) — Container template
 - [references/snapshot-qemu-template.md](references/snapshot-qemu-template.md) — QEMU template
 - [references/snapshot-toolchain-template.md](references/snapshot-toolchain-template.md) — Toolchain template
 - [references/snapshot-exec-template.md](references/snapshot-exec-template.md) — Executable Binaries template
-- [references/snapshot-dep-template.md](references/snapshot-dep-template.md) — Dependencies template
 - [references/reproduce.md](references/reproduce.md) — reproduce dev environment from YAML
 - [references/file-reference.md](references/file-reference.md) — `!file` tag for external file references
 
@@ -35,4 +35,5 @@ Read these references first:
 - If the user pastes raw commands without labels, ask them to clarify which category and field the command belongs to.
 - For template categories, group all fields under the same `category/name` together.
 - Save the output as a file (`.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`). Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
+- Always write categories in reproduction priority order: `server` → `pyvenv` → `dep`/`deps` → all others. This order must be maintained regardless of the order entries were added.
 - For large field values, use `!file` to store content in a separate file under `.vodka/`. See [references/file-reference.md](references/file-reference.md).
