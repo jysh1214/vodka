@@ -69,5 +69,6 @@ Large values can be stored in separate files using the `!file` tag:
 
 ```yaml
 pyvenv:
-  packages: !file requirements.txt
+  .venv:
+    packages: !file requirements-.venv.txt
 ```

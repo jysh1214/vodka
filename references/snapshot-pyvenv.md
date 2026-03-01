@@ -6,15 +6,17 @@ How to collect Python virtual environment information.
 
 | Field | Label | Command | Description |
 |---|---|---|---|
-| Module load | `[pyvenv:module]` | `module load python/3.11.5` | HPC module load command |
-| Python version | `[pyvenv:version]` | `python3 --version` | Python interpreter version |
-| Venv path | `[pyvenv:venv]` | `echo $VIRTUAL_ENV` | Virtual environment directory |
-| Interpreter path | `[pyvenv:path]` | `which python3` | Full path to python3 binary |
-| pip version | `[pyvenv:pip]` | `pip --version` | pip package manager version |
-| Installed packages | `[pyvenv:packages]` | `pip freeze` | List of installed packages |
+| Module load | `[pyvenv/<name>:module]` | `module load python/3.11.5` | HPC module load command |
+| Python version | `[pyvenv/<name>:version]` | `python3 --version` | Python interpreter version |
+| Venv path | `[pyvenv/<name>:venv]` | `echo $VIRTUAL_ENV` | Virtual environment directory |
+| Interpreter path | `[pyvenv/<name>:path]` | `which python3` | Full path to python3 binary |
+| pip version | `[pyvenv/<name>:pip]` | `pip --version` | pip package manager version |
+| Installed packages | `[pyvenv/<name>:packages]` | `pip freeze` | List of installed packages |
+
+`<name>` is the virtual environment name from `python -m venv <name>`. Use `system` for system-wide Python.
 
 ## Collection Steps
 
-1. User provides labeled input for each field (e.g., `[pyvenv:version] Python 3.11.5`)
-2. For `[pyvenv:packages]`, save `pip freeze` output to `.vodka/requirements.txt` and record the field as `packages: !file requirements.txt`
-3. Store all fields under the `pyvenv:` key in `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`
+1. User provides labeled input for each field (e.g., `[pyvenv/.venv:version] Python 3.11.5`)
+2. For `[pyvenv/<name>:packages]`, save `pip freeze` output to `.vodka/requirements-<name>.txt` and record the field as `packages: !file requirements-<name>.txt`
+3. Store all fields under the `pyvenv:` → `<name>:` key in `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`

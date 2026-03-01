@@ -1,0 +1,13 @@
+system:
+  user: alex
+  hostname: AlexWindows
+  os: Ubuntu 24.04.4 LTS
+  kernel: 6.6.87.2-microsoft-standard-WSL2
+  arch: x86_64
+
+pyvenv:
+  system:
+    version: Python 3.13.3
+    path: /usr/local/bin/python3
+    pip: pip 25.0.1
+    packages: !file requirements-system.txt

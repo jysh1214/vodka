@@ -1,6 +1,0 @@
-system:
-  user: alex
-  hostname: AlexWindows
-  os: Ubuntu 24.04.4 LTS (Noble Numbat)
-  kernel: 6.6.87.2-microsoft-standard-WSL2
-  arch: x86_64

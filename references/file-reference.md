@@ -20,7 +20,8 @@ The path is relative to `.vodka/`.
 
 ```yaml
 pyvenv:
-  packages: !file requirements.txt
+  .venv:
+    packages: !file requirements-.venv.txt
 
 toolchain:
   arm-gcc:

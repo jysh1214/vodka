@@ -8,9 +8,9 @@ See [snapshot-system.md](snapshot-system.md) for detailed collection steps.
 
 ## Manual Input
 
-### Python Virtual Environment (`pyvenv`)
+### Python Virtual Environment (`pyvenv/<name>`)
 
-See [snapshot-pyvenv.md](snapshot-pyvenv.md) for detailed collection steps.
+See [snapshot-pyvenv.md](snapshot-pyvenv.md) for detailed collection steps. `<name>` is the venv name or `system` for system-wide Python.
 
 ### Templates
 

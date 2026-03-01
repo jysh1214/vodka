@@ -12,7 +12,7 @@ How to reproduce a development environment from a given YAML file.
 
 Process categories in this order:
 
-1. `pyvenv` — Python virtual environment
+1. `pyvenv/*` — Python virtual environments
 2. `dep/*` or `deps/*` — Dependencies
 3. All other categories (container, qemu, toolchain, exec, etc.)
 
@@ -20,7 +20,9 @@ Within the same category, follow the order as they appear in the YAML.
 
 ## Steps
 
-### 1. pyvenv
+### 1. pyvenv/*
+
+For each named Python environment:
 
 1. If `module` field exists, run the `module load` command.
 2. If `venv` field exists, create a virtual environment: `python3 -m venv <venv_path>` and activate it.
