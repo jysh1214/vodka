@@ -29,7 +29,7 @@ Follow vodka skill, snapshot the development environment for {description}
 Optionally include a Jira ticket ID:
 
 ```txt
-Follow vodka skill, snapshot the development environment for PROJ-123 benchmark inference latency
+Follow vodka skill, snapshot the development environment for {ticket} {description}
 ```
 
 ### 2. Add pyvenv snapshot (optional)
@@ -73,25 +73,4 @@ Follow vodka skill, extract the experiment steps from {yaml}
 
 ```txt
 Follow vodka skill, show snapshot
-```
-
-## Snapshot Structure
-
-Each snapshot lives in its own subfolder:
-
-```
-.vodka/
-  PROJ-123-benchmark-inference-latency-2026-03-01-07-09-11/
-    env-snapshot.yaml
-    requirements-system.txt
-```
-
-## File References
-
-Large values can be stored in separate files using the `!file` tag. Paths are relative to the snapshot subfolder:
-
-```yaml
-pyvenv:
-  .venv:
-    packages: !file requirements-.venv.txt
 ```
