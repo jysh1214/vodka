@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Print the latest .vodka/env-snapshot-*.yaml as a table."""
+"""Print the latest .vodka/*/env-snapshot.yaml as a table."""
 
 import glob
 import os
@@ -36,20 +36,22 @@ def resolve_value(val, base_dir=".vodka"):
 
 
 def find_latest_snapshot():
-    """Find the most recent timestamped snapshot file."""
-    files = sorted(glob.glob(".vodka/env-snapshot-*.yaml"))
+    """Find the most recent snapshot subfolder by timestamp suffix."""
+    files = sorted(glob.glob(".vodka/*/env-snapshot.yaml"))
     if not files:
-        print("No snapshot files found in .vodka/", file=sys.stderr)
+        print("No snapshot files found in .vodka/*/", file=sys.stderr)
         sys.exit(1)
     return files[-1]
 
 
-def load_snapshot(path=None):
+def load_snapshot(path):
+    base_dir = os.path.dirname(path)
     with open(path) as f:
-        return yaml.load(f, Loader=make_loader())
+        data = yaml.load(f, Loader=make_loader())
+    return data, base_dir
 
 
-def print_table(data):
+def print_table(data, base_dir=".vodka"):
     rows = []
     for category, fields in data.items():
         if isinstance(fields, dict):
@@ -57,12 +59,12 @@ def print_table(data):
                 if isinstance(value, dict):
                     # Template category: category/name
                     for field, val in value.items():
-                        resolved = resolve_value(val)
+                        resolved = resolve_value(val, base_dir)
                         rows.append((category, key, field, str(resolved)))
                 elif isinstance(value, list):
                     rows.append((category, "", key, "\n".join(str(v) for v in value)))
                 else:
-                    resolved = resolve_value(value)
+                    resolved = resolve_value(value, base_dir)
                     rows.append((category, "", key, str(resolved)))
 
     headers = ("Category", "Name", "Field", "Value")
@@ -98,8 +100,8 @@ def print_table(data):
 
 def main():
     path = sys.argv[1] if len(sys.argv) > 1 else find_latest_snapshot()
-    data = load_snapshot(path)
-    print_table(data)
+    data, base_dir = load_snapshot(path)
+    print_table(data, base_dir)
 
 
 if __name__ == "__main__":

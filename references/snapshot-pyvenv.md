@@ -18,5 +18,5 @@ How to collect Python virtual environment information.
 ## Collection Steps
 
 1. User provides labeled input for each field (e.g., `[pyvenv/.venv:version] Python 3.11.5`)
-2. For `[pyvenv/<name>:packages]`, save `pip freeze` output to `.vodka/requirements-<name>.txt` and record the field as `packages: !file requirements-<name>.txt`
-3. Store all fields under the `pyvenv:` → `<name>:` key in `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`
+2. For `[pyvenv/<name>:packages]`, save `pip freeze` output to `requirements-<name>.txt` in the snapshot subfolder and record the field as `packages: !file requirements-<name>.txt`
+3. Store all fields under the `pyvenv:` → `<name>:` key in `.vodka/{snapshot-id}-{timestamp}/env-snapshot.yaml`

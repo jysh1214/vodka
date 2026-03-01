@@ -20,10 +20,16 @@ mkdir -p .augment/skills && git clone https://github.com/jysh1214/vodka.git .aug
 
 ### 1. Initial snapshot
 
-Auto-collects system info and creates `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`:
+Auto-collects system info and creates `.vodka/{snapshot-id}-{timestamp}/env-snapshot.yaml`:
 
 ```txt
-Follow vodka skill, snapshot development environment
+Follow vodka skill, snapshot the development environment for {description}
+```
+
+Optionally include a Jira ticket ID:
+
+```txt
+Follow vodka skill, snapshot the development environment for PROJ-123 benchmark inference latency
 ```
 
 ### 2. Add pyvenv snapshot (optional)
@@ -43,7 +49,7 @@ Follow vodka skill, add snapshot:
 ...
 ```
 
-Multiple entries at the same time is okay.
+Multiple entries at the same time is okay. Adding entries creates a new folder with the same snapshot ID but a fresh timestamp.
 
 ### 4. Reproduce dev environment
 
@@ -63,9 +69,20 @@ Follow vodka skill, extract large values to files
 Follow vodka skill, show snapshot
 ```
 
+## Snapshot Structure
+
+Each snapshot lives in its own subfolder:
+
+```
+.vodka/
+  PROJ-123-benchmark-inference-latency-2026-03-01-07-09-11/
+    env-snapshot.yaml
+    requirements-system.txt
+```
+
 ## File References
 
-Large values can be stored in separate files using the `!file` tag:
+Large values can be stored in separate files using the `!file` tag. Paths are relative to the snapshot subfolder:
 
 ```yaml
 pyvenv:

@@ -19,13 +19,30 @@ Read these references first:
 - [references/reproduce.md](references/reproduce.md) — reproduce dev environment from YAML
 - [references/file-reference.md](references/file-reference.md) — `!file` tag for external file references
 
+## Snapshot Naming
+
+Each snapshot is stored in its own subfolder under `.vodka/`:
+
+- `.vodka/{ticket}-{snapshot-id}-{timestamp}/` — with a Jira ticket ID
+- `.vodka/{snapshot-id}-{timestamp}/` — without a ticket
+
+The snapshot ID is a kebab-case, verb-led phrase describing the experimental steps. Prefer verb prefixes: `benchmark-`, `optimize-`, `profile-`, `tune-`, `test-`, etc. The timestamp format is `YYYY-MM-DD-HH-MM-SS`.
+
+Examples:
+- `.vodka/PROJ-123-benchmark-inference-latency-2026-03-01-07-09-11/`
+- `.vodka/optimize-model-quantization-2026-03-01-08-15-30/`
+
+Each subfolder contains:
+- `env-snapshot.yaml` — the snapshot file
+- `requirements-{name}.txt` and other `!file` references
+
 ## Workflow
 
-1. When the skill is triggered, immediately auto-collect system info and create `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`, follow [references/snapshot-system.md](references/snapshot-system.md).
+1. When the skill is triggered, ask the user for a snapshot description and optional Jira ticket ID. Derive the snapshot ID from the description. Then auto-collect system info and create `.vodka/{snapshot-id}-{timestamp}/env-snapshot.yaml`, follow [references/snapshot-system.md](references/snapshot-system.md).
 2. If users want to snapshot pyvenv, follow [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md).
-3. Users can add snapshots at any time. Read the latest `.vodka/env-snapshot-*.yaml`, merge in the new entries, and write the result to a new timestamped file. Each file is always a complete snapshot. Multiple entries at once is fine.
+3. Users can add entries at any time. Read the latest snapshot's `env-snapshot.yaml`, merge in the new entries, and write the result to a new folder with the same snapshot ID but a fresh timestamp. Each folder always contains a complete snapshot. Multiple entries at once is fine.
 4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display it as a table.
-5. If users want to extract large values to files, read the latest `.vodka/env-snapshot-*.yaml`, save large values to separate files under `.vodka/`, and replace them with `!file` references. See [references/file-reference.md](references/file-reference.md).
+5. If users want to extract large values to files, read the latest snapshot's `env-snapshot.yaml`, save large values to separate files in the snapshot subfolder, and replace them with `!file` references. See [references/file-reference.md](references/file-reference.md).
 6. If users want to reproduce the dev environment from a YAML file, follow [references/reproduce.md](references/reproduce.md).
 
 ## Rules
@@ -34,6 +51,6 @@ Read these references first:
 - Accept labeled input in any order. Merge and deduplicate.
 - If the user pastes raw commands without labels, ask them to clarify which category and field the command belongs to.
 - For template categories, group all fields under the same `category/name` together.
-- Save the output as a file (`.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`). Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
+- Save the output in `.vodka/{snapshot-id}-{timestamp}/env-snapshot.yaml`. Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
 - Always write categories in reproduction priority order: `system` → `pyvenv` → `dep`/`deps` → all others. This order must be maintained regardless of the order entries were added.
-- For large field values, use `!file` to store content in a separate file under `.vodka/`. See [references/file-reference.md](references/file-reference.md).
+- For large field values, use `!file` to store content in the snapshot subfolder. See [references/file-reference.md](references/file-reference.md).
