@@ -46,5 +46,10 @@ exec:
   firmware:
     name: firmware.elf
     build: make -j4
-    run: ./build/firmware.elf
+    run:
+      - export LD_LIBRARY_PATH=/opt/libs
+      - ./build/firmware.elf --config test.cfg
+    expect:
+      - diff output.bin expected.bin
+      - test -f log.txt
     checksum: md5sum:7b2e1f...
