@@ -2,6 +2,14 @@
 
 How to reproduce a development environment from a given YAML file.
 
+## Target Directory
+
+The user provides a target directory where the environment will be reproduced. Usage: "reproduce dev environment from {yaml} in {target}".
+
+- The target directory is required. Ask the user if not provided.
+- Create the target directory if it does not exist.
+- For `pyvenv` entries, virtual environments are created under `<target>/<name>` (see pyvenv steps below).
+
 ## Rules
 
 - Skip `system` category entirely. System-level info is not reproducible.
@@ -22,10 +30,10 @@ Within the same category, follow the order as they appear in the YAML.
 
 ### 1. pyvenv/*
 
-For each named Python environment:
+For each named Python environment (where `<name>` is the key under `pyvenv`):
 
 1. If `module` field exists, run the `module load` command.
-2. If `venv` field exists, create a virtual environment: `python3 -m venv <venv_path>` and activate it.
+2. Create a virtual environment at `<target>/<name>`: run `python3 -m venv <name>` inside `<target>` (using the Python resolved after any `module load` in step 1), then activate it.
 3. If `packages` field exists, install all packages: `pip install <package1> <package2> ...`
 
 ### 2. dep/* or deps/*
