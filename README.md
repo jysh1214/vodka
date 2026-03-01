@@ -54,7 +54,7 @@ Multiple entries at the same time is okay. Adding entries creates a new folder w
 ### 4. Reproduce dev environment
 
 ```txt
-Follow vodka skill, reproduce dev environment from {yaml}
+Follow vodka skill, reproduce dev environment from {yaml} in {target}
 ```
 
 ### 5. Extract large values to files
