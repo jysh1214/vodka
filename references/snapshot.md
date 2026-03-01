@@ -2,9 +2,9 @@
 
 ## Auto-Collect
 
-### Server (`server`)
+### System (`system`)
 
-See [snapshot-server.md](snapshot-server.md) for detailed collection steps.
+See [snapshot-system.md](snapshot-system.md) for detailed collection steps.
 
 ## Manual Input
 

@@ -9,7 +9,7 @@ allowed-tools: Bash, Read, Write, Edit, Glob
 Read these references first:
 
 - [references/snapshot.md](references/snapshot.md) — categories and fields overview
-- [references/snapshot-server.md](references/snapshot-server.md) — server auto-collect steps
+- [references/snapshot-system.md](references/snapshot-system.md) — system auto-collect steps
 - [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md) — Python virtual environment fields
 - [references/snapshot-dep-template.md](references/snapshot-dep-template.md) — Dependencies template
 - [references/snapshot-container-template.md](references/snapshot-container-template.md) — Container template
@@ -21,7 +21,7 @@ Read these references first:
 
 ## Workflow
 
-1. When the skill is triggered, immediately auto-collect server info and create `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`, follow [references/snapshot-server.md](references/snapshot-server.md).
+1. When the skill is triggered, immediately auto-collect system info and create `.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`, follow [references/snapshot-system.md](references/snapshot-system.md).
 2. If users want to snapshot pyvenv, follow [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md).
 3. Users can add snapshots at any time. Read the latest `.vodka/env-snapshot-*.yaml`, merge in the new entries, and write the result to a new timestamped file. Each file is always a complete snapshot. Multiple entries at once is fine.
 4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display it as a table.
@@ -30,10 +30,10 @@ Read these references first:
 
 ## Rules
 
-- Always auto-collect server info first before asking for manual input.
+- Always auto-collect system info first before asking for manual input.
 - Accept labeled input in any order. Merge and deduplicate.
 - If the user pastes raw commands without labels, ask them to clarify which category and field the command belongs to.
 - For template categories, group all fields under the same `category/name` together.
 - Save the output as a file (`.vodka/env-snapshot-{YYYY-MM-DD-HH-MM-SS}.yaml`). Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
-- Always write categories in reproduction priority order: `server` → `pyvenv` → `dep`/`deps` → all others. This order must be maintained regardless of the order entries were added.
+- Always write categories in reproduction priority order: `system` → `pyvenv` → `dep`/`deps` → all others. This order must be maintained regardless of the order entries were added.
 - For large field values, use `!file` to store content in a separate file under `.vodka/`. See [references/file-reference.md](references/file-reference.md).

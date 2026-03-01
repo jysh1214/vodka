@@ -4,7 +4,7 @@ How to reproduce a development environment from a given YAML file.
 
 ## Rules
 
-- Skip `server` category entirely. Server-level info is not reproducible.
+- Skip `system` category entirely. System-level info is not reproducible.
 - If you do not know how to obtain, compile, build, or install a resource, ask the user. Do not guess.
 - If a field value uses `!file path`, read the referenced file to get the actual value.
 
