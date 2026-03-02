@@ -2,6 +2,8 @@
 """run_qemu.py — Run QEMU interactive commands using pexpect.
 
 Generated from: env-snapshot.yaml
+Refer to YAML comments in the qemu/exec sections for interaction guidance
+(e.g., expected prompts, wait patterns, timeouts, send sequences).
 """
 
 import sys

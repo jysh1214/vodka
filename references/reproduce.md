@@ -78,6 +78,8 @@ Template: [assets/templates/run_qemu.py](../assets/templates/run_qemu.py)
 
 Generated only when `exec` entries involve QEMU commands. Uses `pexpect` to spawn and interact with QEMU processes.
 
+**Important:** Refer to YAML comments in the QEMU section for interaction guidance (e.g., expected prompts, wait patterns, timeouts, send sequences). Use these comments to shape the pexpect logic.
+
 For each QEMU exec entry, the script:
 
 1. Spawns the QEMU process using `pexpect.spawn()` with the `startup` or `run` command.
