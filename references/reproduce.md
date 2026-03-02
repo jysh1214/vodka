@@ -22,6 +22,8 @@ The skill generates the following scripts into `.vodka/{snapshot-id}-{timestamp}
 
 ### 1. reproduce.sh
 
+Template: [assets/templates/reproduce.sh](../assets/templates/reproduce.sh)
+
 Covers all categories **except** `exec` and `system`, in priority order:
 
 1. `pyvenv/*` — Python virtual environments
@@ -57,6 +59,8 @@ For each remaining category (container, qemu, toolchain, etc.) excluding `exec`:
 
 ### 2. experiment-steps.sh
 
+Template: [assets/templates/experiment-steps.sh](../assets/templates/experiment-steps.sh)
+
 Covers the `exec` section only. Execution steps run after all environments and dependencies are ready.
 
 For each named exec entry:
@@ -69,6 +73,8 @@ For each named exec entry:
 6. If an exec entry involves QEMU (its commands contain `qemu`, case-insensitive), emit `python3 run_qemu.py` instead of the raw commands. See `run_qemu.py` below.
 
 ### 3. run_qemu.py (optional)
+
+Template: [assets/templates/run_qemu.py](../assets/templates/run_qemu.py)
 
 Generated only when `exec` entries involve QEMU commands. Uses `pexpect` to spawn and interact with QEMU processes.
 
