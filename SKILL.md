@@ -41,7 +41,7 @@ Each subfolder contains:
 1. When the skill is triggered, ask the user for a snapshot description and optional Jira ticket ID. Derive the snapshot ID from the description. Then auto-collect system info and create `.vodka/{snapshot-id}-{timestamp}/env-snapshot.yaml`, follow [references/snapshot-system.md](references/snapshot-system.md).
 2. If users want to snapshot pyvenv, follow [references/snapshot-pyvenv.md](references/snapshot-pyvenv.md).
 3. Users can add entries at any time. Usage: "add snapshot: ...". Read the latest snapshot's `env-snapshot.yaml`, merge in the new entries, and write the result to a new folder with the same snapshot ID but a fresh timestamp. Do not modify the existing folder. Each folder always contains a complete snapshot. Multiple entries at once is fine.
-4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display it as a table.
+4. If users want to show the snapshot, run `python3 scripts/print_yaml.py` to display the latest snapshot as a table. To show a specific YAML, run `python3 scripts/print_yaml.py <path>`.
 5. If users want to extract large values to files, read the latest snapshot's `env-snapshot.yaml`, save large values to separate files in the snapshot subfolder, and replace them with `!file` references. See [references/file-reference.md](references/file-reference.md).
 6. If users want to reproduce the dev environment from a snapshot, follow [references/reproduce.md](references/reproduce.md). Usage: "reproduce dev environment from {snapshot-id}". The skill locates the latest snapshot subfolder matching `{snapshot-id}` under `.vodka/`, reads its `env-snapshot.yaml`, and generates `reproduce.sh`, `experiment-steps.sh`, and optionally `run_qemu.py` into that subfolder.
 
