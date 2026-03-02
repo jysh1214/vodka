@@ -53,6 +53,8 @@ Multiple entries at the same time is okay. Adding entries creates a new folder w
 
 ### 4. Reproduce dev environment
 
+Reads the YAML snapshot and runs the commands inside the target directory (`cd {target} && ...`):
+
 ```txt
 Follow vodka skill, reproduce dev environment from {yaml} in {target}
 ```

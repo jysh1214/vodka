@@ -8,6 +8,7 @@ The user provides a target directory where the environment will be reproduced. U
 
 - The target directory is required. Ask the user if not provided.
 - Create the target directory if it does not exist.
+- All commands run inside the target directory: `cd <target> && <command>`.
 - For `pyvenv` entries, virtual environments are created under `<target>/<name>` (see pyvenv steps below).
 
 ## Rules
