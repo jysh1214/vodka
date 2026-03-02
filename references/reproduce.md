@@ -23,7 +23,8 @@ Process categories in this order:
 
 1. `pyvenv/*` — Python virtual environments
 2. `dep/*` or `deps/*` — Dependencies
-3. All other categories (container, qemu, toolchain, exec, etc.)
+3. All other categories (container, qemu, toolchain, etc.)
+4. `exec/*` — Execution steps (always last)
 
 Within the same category, follow the order as they appear in the YAML.
 
@@ -47,9 +48,20 @@ For each named dependency:
 
 ### 3. Other categories
 
-For each remaining category (container, qemu, toolchain, exec, etc.):
+For each remaining category (container, qemu, toolchain, etc.) excluding `exec`:
 
 1. If `module` field exists, run the `module load` command.
 2. If `startup` field exists, use it as the setup command.
 3. If `build` field exists, use it as the build command.
 4. If you do not know how to set up the resource, ask the user.
+
+### 4. exec/*
+
+Execution steps run last, after all environments and dependencies are ready.
+
+For each named exec entry:
+
+1. If `cd` field exists, change the working directory to `<target>/<cd value>`.
+2. Run each step field in order.
+3. If `startup` field exists, use it as the launch command.
+4. If you do not know how to run a step, ask the user.

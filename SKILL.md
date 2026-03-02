@@ -53,5 +53,5 @@ Each subfolder contains:
 - If the user pastes raw commands without labels, ask them to clarify which category and field the command belongs to.
 - For template categories, group all fields under the same `category/name` together.
 - Save the output in `.vodka/{snapshot-id}-{timestamp}/env-snapshot.yaml`. Follow the format in [assets/templates/env-snapshot-example.yaml](assets/templates/env-snapshot-example.yaml).
-- Always write categories in reproduction priority order: `system` → `pyvenv` → `dep`/`deps` → all others. This order must be maintained regardless of the order entries were added.
+- Always write categories in reproduction priority order: `system` → `pyvenv` → `dep`/`deps` → all others → `exec`. This order must be maintained regardless of the order entries were added.
 - For large field values, use `!file` to store content in the snapshot subfolder. See [references/file-reference.md](references/file-reference.md).
