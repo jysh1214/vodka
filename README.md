@@ -53,10 +53,10 @@ Multiple entries at the same time is okay. Adding entries creates a new folder w
 
 ### 4. Reproduce dev environment
 
-Reads the YAML snapshot and runs the commands inside the target directory (`cd {target} && ...`):
+Generates `reproduce.sh`, `experiment-steps.sh`, and optionally `run_qemu.py` into the snapshot subfolder:
 
 ```txt
-Follow vodka skill, reproduce dev environment from {yaml} in {target}
+Follow vodka skill, reproduce dev environment from {snapshot-id}
 ```
 
 ### 5. Extract large values to files
@@ -65,13 +65,7 @@ Follow vodka skill, reproduce dev environment from {yaml} in {target}
 Follow vodka skill, extract large values to files
 ```
 
-### 6. Extract experiment steps
-
-```txt
-Follow vodka skill, extract the experiment steps from {yaml}
-```
-
-### 7. Show snapshot
+### 6. Show snapshot
 
 ```txt
 Follow vodka skill, show snapshot
